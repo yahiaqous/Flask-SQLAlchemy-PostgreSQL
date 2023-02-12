@@ -1,5 +1,4 @@
 from sqlalchemy import inspect
-from sqlalchemy.orm import relationship
 from datetime import datetime
 from flask_validator import ValidateEmail, ValidateString, ValidateCountry
 from sqlalchemy.orm import validates
@@ -22,8 +21,8 @@ class Account(db.Model):
     country      = db.Column(db.String(100))
     phone_number = db.Column(db.String(20))
 
-# Relations:
-    items = relationship("Item", backref='account')    # Account May Own Many Items => One to Many
+# Relations: SQLAlchemy Basic Relationship Patterns => https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
+    items = db.relationship("Item", back_populates='account')    # Account May Own Many Items => One to Many
 
 
 # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
