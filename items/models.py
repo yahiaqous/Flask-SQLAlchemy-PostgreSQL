@@ -20,8 +20,10 @@ class Item(db.Model):
     description  = db.Column(db.Text())
     image_link   = db.Column(db.String(1000), nullable=False)
 
-# Relations:
-    account_id   = db.Column(db.String(100), db.ForeignKey("account.id"))
+# Relations: SQLAlchemy Basic Relationship Patterns => https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html
+    account    = db.relationship("Account", back_populates="items")
+    account_id = db.Column(db.String(100), db.ForeignKey("account.id"))
+
 
 # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
     @classmethod
