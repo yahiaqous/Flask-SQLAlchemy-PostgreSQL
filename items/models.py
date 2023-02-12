@@ -3,10 +3,11 @@ from datetime import datetime
 from flask_validator import ValidateString, ValidateNumber, ValidateURL
 from sqlalchemy.orm import validates
 
-from src import db
+from .. import db  # from __init__.py
 
 # ----------------------------------------------- #
 
+# SQL Datatype Objects => https://docs.sqlalchemy.org/en/14/core/types.html
 class Item(db.Model):
 # Auto Generated Fields:
     id           = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
@@ -36,7 +37,7 @@ class Item(db.Model):
         else: return value
     
     
-# Serialize PostgreSQL Query => https://stackoverflow.com/a/46180522
+# How to serialize SqlAlchemy PostgreSQL Query to JSON => https://stackoverflow.com/a/46180522
     def toDict(self): 
         return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
 

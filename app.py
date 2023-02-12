@@ -12,8 +12,8 @@ def hello():
     return "Hello World!"
 
 # Applications Routes
-from .src.accounts import urls
-from .src.items import urls
+from .accounts import urls
+from .items import urls
 
 # ----------------------------------------------- #
 

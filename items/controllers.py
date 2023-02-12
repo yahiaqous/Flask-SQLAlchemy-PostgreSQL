@@ -1,11 +1,15 @@
 from flask import request, jsonify
 import uuid
 
-from src import db
+from .. import db
 from .models import Item
 
 # ----------------------------------------------- #
 
+# Query Object Methods => https://docs.sqlalchemy.org/en/14/orm/query.html#sqlalchemy.orm.Query
+# Session Object Methods => https://docs.sqlalchemy.org/en/14/orm/session_api.html#sqlalchemy.orm.Session
+# How to serialize SqlAlchemy PostgreSQL Query to JSON => https://stackoverflow.com/a/46180522
+  
 def list_all_items_controller():
     items = Item.query.all()
     response = []
