@@ -144,21 +144,21 @@ We will create a database called "**testdb**" and user "**testuser**" with passw
 3. Create a New Database
 
    ```postgres
-    <!-- create database DBNAME; -->
-    postgres=# create database testdb;
-    ➜ CREATE DATABASE
+   <!-- create database DBNAME; -->
+   postgres=# create database testdb;
+   ➜ CREATE DATABASE
    ```
 
 4. Create a Database User, then Grant Privileges to it
 
    ```postgres
-    <!-- create user USERNAME with encrypted password 'PASSWORD'; -->
-    postgres=# create user testuser with encrypted password 'testpass';
-    ➜ CREATE ROLE
+   <!-- create user USERNAME with encrypted password 'PASSWORD'; -->
+   postgres=# create user testuser with encrypted password 'testpass';
+   ➜ CREATE ROLE
 
-    <!-- grant all privileges on database DBNAME to USERNAME; -->
-    postgres=# grant all privileges on database testdb to testuser;
-    ➜ GRANT
+   <!-- grant all privileges on database DBNAME to USERNAME; -->
+   postgres=# grant all privileges on database testdb to testuser;
+   ➜ GRANT
    ```
 
 5. Exit the Shell
