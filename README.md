@@ -34,7 +34,7 @@ In this tutorial, you will learn how to build a simple CRUD API using **Flask**,
 
 ## Introduction
 
-**CRUD** refers to the four basic operations that a software application must be able to perform – **Create**, **Read**, **Update**, and **Delete**.
+**CRUD** refers to the four basic operations that a software application must be able to perform: **Create**, **Read**, **Update**, and **Delete**.
 
 > 📝 _Note: This is a shallow app with the best practice for file structuring, to get the idea and start learning the framework!_
 
@@ -187,7 +187,7 @@ Now that our new PostgreSQL database is up and running, let's move on to the nex
 
 ### #2 Initialize the Virtual Environment
 
-- **What is Virtual Environment?**
+- **What is the Virtual Environment?**
 
   > A virtual environment is a tool that helps separate dependencies required by different projects by creating isolated python virtual environments for them. This is one of the most important tools that most Python developers use.
 
@@ -256,7 +256,7 @@ python -m pip freeze > requirements.txt
 
 ### #1 Getting Started with the Main Files "`app`, `__init__`, `config`, `env`"
 
-In most Flask tutorials, you'll notice that they only have the `app.py` file, which works. However, it is better to have multiple files, which makes the code more clean and file management much easier, especially in large projects.
+In most Flask tutorials, you'll notice that they only have the `app.py` file, which works. However, it is better to have multiple files, which makes the code clean and file management much easier, especially in large projects.
 
 So, let's create the 4 main files with this command:
 
@@ -306,7 +306,7 @@ Now let's start diving deeper into each file:
 
 - _**`.env`**_
 
-  Create the environment variables for the config mode and the database url for each mode.
+  Create the environment variables for the config mode and the database URL for each mode.
 
   ```python
   # Configuration Mode => development, testing, staging, or production
@@ -367,7 +367,7 @@ Now let's start diving deeper into each file:
       app.run()
   ```
 
-Now our basic app is ready to go! We can run the server in the terminal using one of the following commands:
+Now our basic app is ready to go! We can run the server in the terminal by using one of the following commands:
 
 ```bash
 # To Run the Server in Terminal
@@ -385,11 +385,11 @@ You can open your browser at <http://127.0.0.1:5000> and see the result!
 
 ### #2 Getting Started with the Applications Files
 
-All the pains and headaches above are for the first time starting the project; most code is written inside the applications files.
+All the pains and headaches above are for the first time starting the project; most code is written inside the files of the applications.
 
 > 💡 _Tip: It is a best practice to have each app in a separate folder._
 
-Each app should has its **models**, **urls**, and **controllers**.
+Each app should have its own **models**, **urls**, and **controllers**.
 
 Let's start by creating an app called Accounts with this command:
 
@@ -397,7 +397,7 @@ Let's start by creating an app called Accounts with this command:
 mkdir accounts && touch $_/models.py $_/urls.py $_/controllers.py
 ```
 
-Now. let's break down all these files:
+Now, let's break down all these files:
 
 > 💡 _Tip: Always start with building the models classes_
 
@@ -427,7 +427,6 @@ Now. let's break down all these files:
       country      = db.Column(db.String(100))
       phone_number = db.Column(db.String(20))
 
-
   # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
       @classmethod
       def __declare_last__(cls):
@@ -441,7 +440,6 @@ Now. let's break down all these files:
           if isinstance(value, str) and value == '': return None
           else: return value
 
-
   # How to serialize SqlAlchemy PostgreSQL Query to JSON => https://stackoverflow.com/a/46180522
       def toDict(self):
           return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
@@ -453,7 +451,7 @@ Now. let's break down all these files:
 
 - **`controllers.py`**
 
-  The general CRUD requests is:
+  The general CRUD requests are:
 
   - List all instances
   - Post new instance
@@ -637,11 +635,11 @@ Now, two steps are required to get our accounts app ready to go:
    python -m pip install flask-sqlalchemy
    ```
 
-   You can learn more about Flask-Migrate library from [https://flask-migrate.readthedocs.io/en/latest](https://flask-migrate.readthedocs.io/en/latest)
+   You can learn more about the Flask-Migrate library from [https://flask-migrate.readthedocs.io/en/latest](https://flask-migrate.readthedocs.io/en/latest)
 
 ### #3 Send Requests Using Postman
 
-In this section, we will test all CRUD operations we created using Postman.
+In this section, we will use Postman to test all of the CRUD operations we created.
 
 **What is Postman?**
 
@@ -708,66 +706,66 @@ In this section, we will test all CRUD operations we created using Postman.
 
 ### Get Started with SQLAlchemy Basic Relationships
 
-Let's say we have multiple applications like **Accounts** & **Items** and we need to establish a relationship between models!
+Let's say we have multiple applications like **Accounts** & **Items** and we need to establish a relationship between their models!
 
 > 📝 _Note: This is a short summary about the model's relationships, we'll go deeper into their CRUD operations in another article!_
 
 1. **[One to Many Relationship](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many)**
 
-   The Account may own many Items, but the Item owned by one Account!
+   The Account may own many Items, but the Item is owned by one Account!
 
    > 💡 _Tip: Use **`ForeignKey`** in the **many** side!_
 
    ```python
    class Account(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      items = db.relationship("Item", back_populates='account')
+     items = db.relationship("Item", back_populates='account')
    ```
 
    ```python
    class Item(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      account_id = db.Column(db.String(100), db.ForeignKey("account.id"))
-      account    = db.relationship("Account", back_populates="items")
+     account_id = db.Column(db.String(100), db.ForeignKey("account.id"))
+     account    = db.relationship("Account", back_populates="items")
    ```
 
 2. **[Many to One Relationship](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#many-to-one)**
 
-   The Item may owned by many Accounts, but the Account has only one Item!
+   The Item may be owned by many Accounts, but the Account has only one Item!
 
    > 💡 _Tip: Use **`ForeignKey`** in the **many** side!_
 
    ```python
    class Account(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+    id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+       .
+       .
+       .
 
    # Relations:
-      item     = db.relationship("Item", back_populates="accounts")
-      item_id  = db.Column(db.String(100), db.ForeignKey("item.id"))
+    item     = db.relationship("Item", back_populates="accounts")
+    item_id  = db.Column(db.String(100), db.ForeignKey("item.id"))
    ```
 
    ```python
    class Item(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False,
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False,
+        .
+        .
+        .
 
    # Relations:
-      accounts = db.relationship("Account", back_populates='item')
+     accounts = db.relationship("Account", back_populates='item')
    ```
 
 3. **[One to One Relationship](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-one)**
@@ -778,63 +776,62 @@ Let's say we have multiple applications like **Accounts** & **Items** and we nee
 
    ```python
    class Account(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      item = db.relationship("Item", back_populates='account', uselist=False)
+     item = db.relationship("Item", back_populates='account', uselist=False)
    ```
 
    ```python
    class Item(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      account    = db.relationship("Account", back_populates='item')
-      account_id = db.Column(db.String(100), db.ForeignKey("account.id"), unique=True)
+     account    = db.relationship("Account", back_populates='item')
+     account_id = db.Column(db.String(100), db.ForeignKey("account.id"), unique=True)
    ```
 
 4. **[Many to Many Relationship](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#many-to-many)**
 
-   The Account may own many Items, and the Item my owned by many Accounts!
+   The Account may own many Items, and the Item may be owned by many Accounts!
 
    > 💡 _Tip: Use **`Association`** class with multi **`ForeignKey`**!_
 
    ```python
    class Association(db.Model):
-      item         = db.relationship("Item", back_populates="accounts")
-      account      = db.relationship("Account", back_populates="items")
-      item_id      = db.Column('item_id', db.String, db.ForeignKey('item.id'), primary_key=True)
-      account_id   = db.Column('account_id', db.String, db.ForeignKey('account.id'), primary_key=True)
+     item         = db.relationship("Item", back_populates="accounts")
+     account      = db.relationship("Account", back_populates="items")
+     item_id      = db.Column('item_id', db.String, db.ForeignKey('item.id'), primary_key=True)
+     account_id   = db.Column('account_id', db.String, db.ForeignKey('account.id'), primary_key=True)
 
-      def toDict(self):
-         return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
-
+     def toDict(self):
+        return { c.key: getattr(self, c.key) for c in inspect(self).mapper.column_attrs }
 
    class Account(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      items = db.relationship("Association", back_populates='account')
+     items = db.relationship("Association", back_populates='account')
    ```
 
    ```python
    class Item(db.Model):
-      id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
-         .
-         .
-         .
+     id = db.Column(db.String(50), primary_key=True, nullable=False, unique=True)
+        .
+        .
+        .
 
    # Relations:
-      accounts = db.relationship("Association", back_populates="item")
+     accounts = db.relationship("Association", back_populates="item")
    ```
 
 Check out the Concept of **backref** and **back_populate** in SQLalchemy from [this Stack Overflow Answer](https://stackoverflow.com/a/59920780).
