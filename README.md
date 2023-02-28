@@ -454,7 +454,7 @@ Now, let's break down all these files:
   The general CRUD requests are:
 
   - List all instances
-  - Post new instance
+  - Post a new instance
   - Get a specific instance
   - Put a specific instance
   - Delete a specific instance
@@ -628,7 +628,7 @@ Now, two steps are required to get our accounts app ready to go:
    flask db upgrade
    ```
 
-   if you face this error: AttributeError: `'_FakeStack'` object has no attribute `'__ident_func__'`, then fix it with these commends:
+   If you face this error: AttributeError: `'_FakeStack'` object has no attribute `'__ident_func__'`, then fix it with these commands:
 
    ```bash
    python -m pip uninstall flask-sqlalchemy
@@ -708,7 +708,7 @@ In this section, we will use Postman to test all of the CRUD operations we creat
 
 Let's say we have multiple applications like **Accounts** & **Items** and we need to establish a relationship between their models!
 
-> 📝 _Note: This is a short summary about the model's relationships, we'll go deeper into their CRUD operations in another article!_
+> 📝 _Note: This is a short summary of the model's relationships, we'll go deeper into their CRUD operations in another article!_
 
 1. **[One to Many Relationship](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many)**
 
@@ -843,3 +843,5 @@ Check out the Concept of **backref** and **back_populate** in SQLalchemy from [t
 In this post, we have introduced ORMs, specifically the SQLAlchemy ORM. Using Flask and Flask-SQLAlchemy, we've created a simple API that displays and manipulates data in a PostgreSQL database. Finally, we introduce the basic relationships of SQLAlchemy.
 
 > _The source code for the project in this post can be found on [GitHub](https://github.com/yahiaqous/Flask-SQLAlchemy-PostgreSQL)._
+>
+> _Article on [Hashnode](https://yahiaqous.hashnode.dev/crud-api-python-flask-sqlalchemy-postgresql), [Medium](https://medium.com/@yahiaqous/how-to-build-a-crud-api-using-python-flask-and-sqlalchemy-orm-with-postgresql-7869517f8930), [DEV Community](https://dev.to/yahiaqous/how-to-build-a-crud-api-using-python-flask-and-sqlalchemy-orm-with-postgresql-2jjj), and [GitHub Pages](https://yahiaqous.github.io/Flask-SQLAlchemy-PostgreSQL/)_
